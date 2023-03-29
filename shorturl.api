@@ -17,10 +17,11 @@ type GenerateRes {
 }
 
 type RedirectReq {
-	ShortUrl string `json:"short_url""`
+	ShortUrl string `path:"short_url""`
 }
 
 type RedirectRes {
+	Url string `json:"url"`
 }
 
 service shorturl {

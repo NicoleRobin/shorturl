@@ -1,7 +1,6 @@
 package logic
 
 import (
-	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -28,22 +27,6 @@ func NewGenerateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Generate
 	}
 }
 
-func shortUrl(id int64) string {
-	var res bytes.Buffer
-	for id > 0 {
-		remainder := id % 62
-		if remainder >= 0 && remainder < 10 {
-			res.WriteByte(byte('0' + remainder))
-		} else if remainder >= 10 && remainder < 36 {
-			res.WriteByte(byte(int64('A') + remainder))
-		} else if remainder >= 36 {
-			res.WriteByte(byte(int64('a') + remainder))
-		}
-		id = id / 62
-	}
-	return res.String()
-}
-
 func (l *GenerateLogic) Generate(req *types.GenerateReq) (resp *types.GenerateRes, err error) {
 	logx.Infof("req:%+v", req)
 
@@ -68,7 +51,7 @@ func (l *GenerateLogic) Generate(req *types.GenerateReq) (resp *types.GenerateRe
 	}
 
 	// 生成短网址
-	shortUrl := shortUrl(autoIncrId)
+	shortUrl := decimalToSixtytwo(autoIncrId)
 	shortUrl = path.Join(l.svcCtx.Config.BaseUrl, shortUrl)
 	logx.Infof("shortUrl:%s", shortUrl)
 	shortUrlModel = &model.TShorturl{

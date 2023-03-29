@@ -3,7 +3,7 @@ Host: 0.0.0.0
 Port: 8888
 baseUrl: http://shorturl.com
 Mysql:
-  DataSource: root:@tcp(127.0.0.1)/test?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: robin:robin@tcp(127.0.0.1)/test?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 CacheConf:
   - Host: 127.0.0.1:6379
     Type: node

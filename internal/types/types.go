@@ -10,8 +10,9 @@ type GenerateRes struct {
 }
 
 type RedirectReq struct {
-	ShortUrl string `json:"short_url""`
+	ShortUrl string `path:"short_url""`
 }
 
 type RedirectRes struct {
+	Url string `json:"url"`
 }

@@ -19,7 +19,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/:ShortUrl",
+				Path:    "/:short_url",
 				Handler: redirectHandler(serverCtx),
 			},
 		},
