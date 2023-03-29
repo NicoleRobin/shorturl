@@ -1,0 +1,32 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type GenerateReq {
+	Url string `json:"url"`
+}
+
+type GenerateRes {
+	ShortUrl string `json:"short_url"`
+}
+
+type RedirectReq {
+	ShortUrl string `json:"short_url""`
+}
+
+type RedirectRes {
+}
+
+service shorturl {
+	@handler generate
+	post /generate (GenerateReq) returns (GenerateRes)
+	
+	@handler redirect
+	get /:short_url (RedirectReq) returns (RedirectRes)
+}
